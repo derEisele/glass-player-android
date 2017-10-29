@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <!--Backup normal color scheme-->
+    <color name="colorPrimaryNormal">#009688</color>
+    <color name="colorPrimaryDarkNormal">#00796B</color>
+
+    <!--Same color for status bar and toolbar-->
+    <color name="colorPrimary">@color/colorPrimaryDarkNormal</color>
+    <color name="colorPrimaryDark">@color/colorPrimaryDarkNormal</color>
+
+    <color name="colorPrimaryLight">#B2DFDB</color>
+    <color name="colorAccent">#FF9800</color>
+    <color name="primaryText">#212121</color>
+    <color name="secondaryText">#757575</color>
+    <color name="colorDivider">#BDBDBD</color>
+    <color name="textColor">#FFFFFF</color>
+
+    <color name="drawerItem">@color/primaryText</color>
+    <color name="drawerHeader">@color/textColor</color>
 </resources>
