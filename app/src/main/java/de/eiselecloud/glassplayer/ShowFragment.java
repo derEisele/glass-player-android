@@ -1,5 +1,6 @@
 package de.eiselecloud.glassplayer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -35,6 +36,8 @@ public class ShowFragment extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnAllShows:
+                Intent intent = new Intent(getActivity(), ShowListActivity.class);
+                startActivity(intent);
                 return;
         }
     }

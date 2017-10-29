@@ -1,7 +1,6 @@
 package de.eiselecloud.glassplayer;
 
 import android.content.Context;
-import android.support.v4.app.FragmentManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;

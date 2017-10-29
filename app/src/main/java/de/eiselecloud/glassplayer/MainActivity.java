@@ -6,7 +6,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import com.mindorks.placeholderview.PlaceHolderView;
 
@@ -18,7 +17,6 @@ public class MainActivity extends AppCompatActivity implements DrawerMenuItem.Dr
 
     private PlaceHolderView mDrawerView;
     private DrawerLayout mDrawer;
-    //private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +25,6 @@ public class MainActivity extends AppCompatActivity implements DrawerMenuItem.Dr
 
         mDrawer = (DrawerLayout)findViewById(R.id.drawerLayout);
         mDrawerView = (PlaceHolderView)findViewById(R.id.drawerView);
-        //mToolbar = (Toolbar)findViewById(R.id.toolbar);
         setupDrawer();
 
         HomeFragment homeFragment = new HomeFragment();
