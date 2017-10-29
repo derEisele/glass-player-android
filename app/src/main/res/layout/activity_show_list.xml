@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="de.eiselecloud.glassplayer.ShowListActivity">
 
     <android.support.v7.widget.Toolbar
@@ -22,4 +23,11 @@
             android:textSize="18sp"
             android:text="@string/allShows"/>
     </android.support.v7.widget.Toolbar>
+
+    <com.mindorks.placeholderview.PlaceHolderView
+        android:id="@+id/phl_shows"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.mindorks.placeholderview.PlaceHolderView>
 </LinearLayout>
