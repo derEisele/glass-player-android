@@ -13,16 +13,19 @@ import android.view.ViewGroup;
  * Created by alexander on 29.10.17.
  */
 
-public class MovieFragment extends Fragment {
+public class HomeFragment extends Fragment {
     View rootView;
     Toolbar toolbar;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.movie_view, container, false);
+        rootView = inflater.inflate(R.layout.home_view, container, false);
         toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
 
         if (toolbar == null){ Log.e("GLASS", "Toolbar is null");}
+
+        setRetainInstance(true);
 
         return rootView;
     }

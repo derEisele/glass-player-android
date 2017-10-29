@@ -1,6 +1,7 @@
 package de.eiselecloud.glassplayer;
 
 import android.content.Context;
+import android.support.v4.app.FragmentManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -9,6 +10,8 @@ import com.mindorks.placeholderview.annotations.Click;
 import com.mindorks.placeholderview.annotations.Layout;
 import com.mindorks.placeholderview.annotations.Resolve;
 import com.mindorks.placeholderview.annotations.View;
+
+import static android.R.attr.fragment;
 
 /**
  * Created by alexander on 29.10.17.
@@ -74,7 +77,6 @@ public class DrawerMenuItem {
     private void onMenuItemClick(){
         switch (mMenuPosition){
             case DRAWER_MENU_ITEM_HOME:
-                Toast.makeText(mContext, "Home: TODO", Toast.LENGTH_SHORT).show();
                 if(mCallBack != null)mCallBack.onHomeMenuSelected();
                 break;
             case DRAWER_MENU_ITEM_MUSIC:
@@ -82,11 +84,9 @@ public class DrawerMenuItem {
                 if(mCallBack != null)mCallBack.onMusicMenuSelected();
                 break;
             case DRAWER_MENU_ITEM_SHOW:
-                Toast.makeText(mContext, "Show: TODO", Toast.LENGTH_SHORT).show();
                 if(mCallBack != null)mCallBack.onShowMenuSelected();
                 break;
             case DRAWER_MENU_ITEM_MOVIE:
-                Toast.makeText(mContext, "Movie: TODO", Toast.LENGTH_SHORT).show();
                 if(mCallBack != null)mCallBack.onMovieMenuSelected();
                 break;
             case DRAWER_MENU_ITEM_LIVETV:
