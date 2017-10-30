@@ -1,4 +1,4 @@
-package de.eiselecloud.glassplayer;
+package de.eiselecloud.glassplayer.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import de.eiselecloud.glassplayer.R;
 
 /**
  * Created by alexander on 29.10.17.

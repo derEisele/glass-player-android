@@ -12,6 +12,10 @@ import com.mindorks.placeholderview.PlaceHolderView;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.eiselecloud.glassplayer.fragments.HomeFragment;
+import de.eiselecloud.glassplayer.fragments.MovieFragment;
+import de.eiselecloud.glassplayer.fragments.ShowFragment;
+
 
 public class MainActivity extends AppCompatActivity implements DrawerMenuItem.DrawerCallBack{
 

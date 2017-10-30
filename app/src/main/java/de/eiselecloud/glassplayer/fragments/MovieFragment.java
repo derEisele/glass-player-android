@@ -1,6 +1,5 @@
-package de.eiselecloud.glassplayer;
+package de.eiselecloud.glassplayer.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,37 +8,26 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+
+import de.eiselecloud.glassplayer.MainActivity;
+import de.eiselecloud.glassplayer.R;
 
 /**
  * Created by alexander on 29.10.17.
  */
 
-public class ShowFragment extends Fragment implements View.OnClickListener{
+public class MovieFragment extends Fragment {
     View rootView;
-    Button btnAllShows;
     Toolbar toolbar;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        rootView = inflater.inflate(R.layout.show_view, container, false);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.movie_view, container, false);
         toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
 
         if (toolbar == null){ Log.e("GLASS", "Toolbar is null");}
 
-        btnAllShows = (Button) rootView.findViewById(R.id.btnAllShows);
-        btnAllShows.setOnClickListener(this);
         return rootView;
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.btnAllShows:
-                Intent intent = new Intent(getActivity(), ShowListActivity.class);
-                startActivity(intent);
-                return;
-        }
     }
 
     @Override
