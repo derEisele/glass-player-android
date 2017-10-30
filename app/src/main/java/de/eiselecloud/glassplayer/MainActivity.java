@@ -1,25 +1,32 @@
 package de.eiselecloud.glassplayer;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MotionEvent;
+import android.view.View;
 
 import com.mindorks.placeholderview.PlaceHolderView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import de.eiselecloud.glassplayer.adapters.DrawerAdapter;
 import de.eiselecloud.glassplayer.fragments.HomeFragment;
 import de.eiselecloud.glassplayer.fragments.MovieFragment;
 import de.eiselecloud.glassplayer.fragments.ShowFragment;
 
 
-public class MainActivity extends AppCompatActivity implements DrawerMenuItem.DrawerCallBack{
+public class MainActivity extends AppCompatActivity implements MyClickListener.MyCallBack{
 
-    private PlaceHolderView mDrawerView;
+    private RecyclerView mDrawerView;
     private DrawerLayout mDrawer;
 
     @Override
@@ -27,8 +34,10 @@ public class MainActivity extends AppCompatActivity implements DrawerMenuItem.Dr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mDrawer = (DrawerLayout)findViewById(R.id.drawerLayout);
-        mDrawerView = (PlaceHolderView)findViewById(R.id.drawerView);
+        mDrawer = (DrawerLayout) findViewById(R.id.drawerLayout);
+        mDrawerView = (RecyclerView) findViewById(R.id.drawerView);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        mDrawerView.setLayoutManager(mLayoutManager);
         setupDrawer();
 
         HomeFragment homeFragment = new HomeFragment();
@@ -48,12 +57,12 @@ public class MainActivity extends AppCompatActivity implements DrawerMenuItem.Dr
         menuItems.add(new DrawerMenuItem(this.getApplicationContext(), DrawerMenuItem.DRAWER_MENU_ITEM_LIVETV));
         menuItems.add(new DrawerMenuItem(this.getApplicationContext(), DrawerMenuItem.DRAWER_MENU_ITEM_SETTINGS));
 
-        mDrawerView.addView(new DrawerHeader());
+        DrawerAdapter adapter = new DrawerAdapter(menuItems);
+        MyClickListener clickListener = new MyClickListener();
+        mDrawerView.setAdapter(adapter);
+        mDrawerView.addOnItemTouchListener(clickListener);
+        clickListener.addCallBack(this);
 
-        for(DrawerMenuItem item: menuItems){
-            item.setDrawerCallBack(this);
-            mDrawerView.addView(item);
-        }
     }
 
     public void setToolbar(Toolbar toolbar) {
@@ -69,40 +78,43 @@ public class MainActivity extends AppCompatActivity implements DrawerMenuItem.Dr
     }
 
     @Override
-    public void onHomeMenuSelected() {
-        mDrawer.closeDrawers();
-    }
+    public void onClick(View view, int position){
+        Fragment fragment = null;
+        switch (position){
+            case 0:
+                //Header
+                break;
+            case 1:
+                //Home
+                fragment = new HomeFragment();
+                break;
+            case 2:
+                //Music
+                break;
+            case 3:
+                //Show
+                fragment = new ShowFragment();
+                break;
+            case 4:
+                fragment = new MovieFragment();
+                //Movie
+                break;
+            case 5:
+                //Live TV
+                break;
+            case 6:
+                //Settings
+                break;
+            default:
+                //Just in case
+                fragment = new HomeFragment();
+                break;
+        }
 
-    @Override
-    public void onMusicMenuSelected() {
-        mDrawer.closeDrawers();
-    }
-
-    @Override
-    public void onShowMenuSelected() {
-        ShowFragment showFragment = new ShowFragment();
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.mainFragment, showFragment);
-        ft.commit();
-        mDrawer.closeDrawers();
-    }
-
-    @Override
-    public void onMovieMenuSelected() {
-        MovieFragment movieFragment = new MovieFragment();
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.mainFragment, movieFragment);
-        ft.commit();
-        mDrawer.closeDrawers();
-    }
-
-    @Override
-    public void onLiveTVMenuSelected() {
-        mDrawer.closeDrawers();
-    }
-
-    @Override
-    public void onSettingsMenuSelected() {
+        if (fragment != null) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.mainFragment, fragment).commit();
+        }
         mDrawer.closeDrawers();
     }
 }
