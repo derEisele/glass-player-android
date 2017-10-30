@@ -24,10 +24,10 @@
             android:text="@string/allShows"/>
     </android.support.v7.widget.Toolbar>
 
-    <com.mindorks.placeholderview.PlaceHolderView
-        android:id="@+id/phl_shows"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/showsView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </com.mindorks.placeholderview.PlaceHolderView>
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>

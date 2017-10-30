@@ -8,6 +8,15 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class Show {
+
+    public Show(){
+
+    }
+
+    public Show(String title){
+        setTitle(title);
+    }
+
     @SerializedName("id")
     @Expose
     private Integer id;

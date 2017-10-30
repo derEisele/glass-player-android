@@ -80,8 +80,4 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.MyViewHold
         }
         return new MyViewHolder(itemView, viewType);
     }
-
-    public interface DrawerListener{
-        void onItemClick(int position);
-    }
 }

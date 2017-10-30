@@ -7,6 +7,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -36,8 +37,7 @@ public class MainActivity extends AppCompatActivity implements MyClickListener.M
 
         mDrawer = (DrawerLayout) findViewById(R.id.drawerLayout);
         mDrawerView = (RecyclerView) findViewById(R.id.drawerView);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        mDrawerView.setLayoutManager(mLayoutManager);
+
         setupDrawer();
 
         HomeFragment homeFragment = new HomeFragment();
@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements MyClickListener.M
     }
 
     private void setupDrawer(){
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        mDrawerView.setLayoutManager(mLayoutManager);
 
         List<DrawerMenuItem> menuItems = new ArrayList<DrawerMenuItem>();
 
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements MyClickListener.M
         DrawerAdapter adapter = new DrawerAdapter(menuItems);
         MyClickListener clickListener = new MyClickListener();
         mDrawerView.setAdapter(adapter);
+        mDrawerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         mDrawerView.addOnItemTouchListener(clickListener);
         clickListener.addCallBack(this);
 
