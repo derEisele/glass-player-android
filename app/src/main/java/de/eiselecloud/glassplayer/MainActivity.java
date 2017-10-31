@@ -19,6 +19,7 @@ import java.util.List;
 import de.eiselecloud.glassplayer.adapters.DrawerAdapter;
 import de.eiselecloud.glassplayer.fragments.HomeFragment;
 import de.eiselecloud.glassplayer.fragments.MovieFragment;
+import de.eiselecloud.glassplayer.fragments.SettingsFragment;
 import de.eiselecloud.glassplayer.fragments.ShowFragment;
 
 
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 //Live TV
                 break;
             case 6:
-                //Settings
+                fragment = new SettingsFragment();
                 break;
             default:
                 //Just in case

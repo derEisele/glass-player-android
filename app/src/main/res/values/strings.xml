@@ -9,4 +9,14 @@
     <string name="show">TV Shows</string>
     <string name="livetv">Live TV</string>
     <string name="allShows">All shows</string>
+    <string name="description">Description</string>
+    <string name="string_some_thing_wrong">Something went wrong...</string>
+    <string name="string_internet_connection_not_available">Internet connection not available.</string>
+    <string name="getting_show_info_title">Loading show</string>
+    <string name="getting_show_info_msg">Loading show details.</string>
+    <string name="prefKey">glassClient</string>
+    <string name="getting_shows_title">Loading shows</string>
+    <string name="getting_shows_msg">Loading show list from server.</string>
+    <string name="serverUrl">Server URL</string>
+    <string name="save">Save</string>
 </resources>
