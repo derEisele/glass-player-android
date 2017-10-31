@@ -7,6 +7,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import com.mindorks.placeholderview.PlaceHolderView;
 
@@ -16,9 +18,10 @@ import java.util.List;
 import de.eiselecloud.glassplayer.adapters.ShowListAdapter;
 import de.eiselecloud.glassplayer.models.Show;
 
-public class ShowListActivity extends AppCompatActivity{
+public class ShowListActivity extends AppCompatActivity implements ShowListAdapter.OnItemClickListener{
     Toolbar toolbar;
     RecyclerView showsView;
+    ShowListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +51,20 @@ public class ShowListActivity extends AppCompatActivity{
         showItems.add(new Show("Test 1"));
         showItems.add(new Show("Test 2"));
 
-        showsView.setAdapter(new ShowListAdapter(showItems));
+        adapter = new ShowListAdapter(this, showItems);
+        adapter.setClickListener(this);
 
+        showsView.setAdapter(adapter);
+    }
 
+    @Override
+    public void onClick(View view, int position) {
+        String title = adapter.getShowByPosition(position).getTitle();
+        Toast.makeText(this, title + " selected!", Toast.LENGTH_LONG).show();
+    }
 
+    @Override
+    public void onLongClick(View view, int position) {
 
     }
 }

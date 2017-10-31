@@ -14,7 +14,11 @@ public class Show {
     }
 
     public Show(String title){
-        setTitle(title);
+        this.title = title;
+        this.poster = "";
+        this.lang = "";
+        this.year = 0;
+        this.id = 0;
     }
 
     @SerializedName("id")

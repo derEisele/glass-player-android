@@ -12,14 +12,15 @@ public class RetroClient {
     /********
      * URLS
      *******/
-    private static String ROOT_URL = "http://192.168.178.107:1234/api/";
+
 
     /**
      * Get Retrofit Instance
      */
-    private static Retrofit getRetrofitInstance() {
+    private static Retrofit getRetrofitInstance(String baseURL) {
+
         return new Retrofit.Builder()
-                .baseUrl(ROOT_URL)
+                .baseUrl(baseURL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
@@ -29,8 +30,8 @@ public class RetroClient {
      *
      * @return API Service
      */
-    public static GlassService getGlassService() {
-        return getRetrofitInstance().create(GlassService.class);
+    public static GlassService getGlassService(String baseURL) {
+        return getRetrofitInstance(baseURL).create(GlassService.class);
     }
 }
 

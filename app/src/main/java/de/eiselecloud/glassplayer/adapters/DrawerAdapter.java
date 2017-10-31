@@ -21,8 +21,9 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.MyViewHold
 
     public final static int TYPE_HEADER = 0;
     public final static int TYPE_MENU = 1;
+    private OnItemClickListener clickListener;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public TextView itemName, nameTxt, serverTxt;
         public ImageView itemIcon;
 
@@ -32,10 +33,25 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.MyViewHold
                 nameTxt = (TextView) view.findViewById(R.id.nameTxt);
                 serverTxt = (TextView) view.findViewById(R.id.serverTxt);
             } else {
+                view.setOnClickListener(this);
                 itemName = (TextView) view.findViewById(R.id.itemNameTxt);
                 itemIcon = (ImageView) view.findViewById(R.id.itemIcon);
             }
         }
+        @Override
+        public void onClick(View view) {
+            if(clickListener != null){
+                clickListener.onClick(view, getAdapterPosition());
+            }
+        }
+    }
+
+    public interface OnItemClickListener{
+        void onClick(View view, int position);
+    }
+
+    public void setClickListener(OnItemClickListener clickListener){
+        this.clickListener = clickListener;
     }
 
     public DrawerAdapter(List<DrawerMenuItem> menuItems){

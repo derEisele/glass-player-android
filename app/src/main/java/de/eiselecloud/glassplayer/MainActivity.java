@@ -1,7 +1,6 @@
 package de.eiselecloud.glassplayer;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -11,10 +10,8 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.MotionEvent;
 import android.view.View;
 
-import com.mindorks.placeholderview.PlaceHolderView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +22,7 @@ import de.eiselecloud.glassplayer.fragments.MovieFragment;
 import de.eiselecloud.glassplayer.fragments.ShowFragment;
 
 
-public class MainActivity extends AppCompatActivity implements MyClickListener.MyCallBack{
+public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnItemClickListener{
 
     private RecyclerView mDrawerView;
     private DrawerLayout mDrawer;
@@ -60,11 +57,10 @@ public class MainActivity extends AppCompatActivity implements MyClickListener.M
         menuItems.add(new DrawerMenuItem(this.getApplicationContext(), DrawerMenuItem.DRAWER_MENU_ITEM_SETTINGS));
 
         DrawerAdapter adapter = new DrawerAdapter(menuItems);
-        MyClickListener clickListener = new MyClickListener();
         mDrawerView.setAdapter(adapter);
+        adapter.setClickListener(this);
         mDrawerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-        mDrawerView.addOnItemTouchListener(clickListener);
-        clickListener.addCallBack(this);
+
 
     }
 
