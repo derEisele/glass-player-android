@@ -4,9 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <fragment
+    <FrameLayout
         android:id="@+id/mainFragment"
-        android:name="de.eiselecloud.glassplayer.fragments.BlankFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

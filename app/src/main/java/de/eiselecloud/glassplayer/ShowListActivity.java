@@ -2,6 +2,7 @@ package de.eiselecloud.glassplayer;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.support.design.widget.Snackbar;
@@ -33,11 +34,13 @@ public class ShowListActivity extends AppCompatActivity implements ShowListAdapt
     ShowListAdapter adapter;
     List<Show> showList;
     View rootView;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_list);
+        context = this;
 
         rootView = findViewById(R.id.showsLL);
 
@@ -61,6 +64,12 @@ public class ShowListActivity extends AppCompatActivity implements ShowListAdapt
 
 
         loadShows();
+
+        adapter = new ShowListAdapter(ShowListActivity.this);
+        showsView.setAdapter(adapter);
+        adapter.setClickListener(this);
+
+
         if (adapter != null) {
             adapter.setClickListener(this);
             showsView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
@@ -71,6 +80,12 @@ public class ShowListActivity extends AppCompatActivity implements ShowListAdapt
     public void onClick(View view, int position) {
         String title = adapter.getShowByPosition(position).getTitle();
         Toast.makeText(this, title + " selected!", Toast.LENGTH_LONG).show();
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("showID", adapter.getShowByPosition(position).getId());
+        Intent intent = new Intent(this, ShowActivity.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     @Override
@@ -97,8 +112,8 @@ public class ShowListActivity extends AppCompatActivity implements ShowListAdapt
 
                     if(response.isSuccessful()){
                         showList = response.body().getShows();
-                        adapter = new ShowListAdapter(ShowListActivity.this, showList);
-                        showsView.setAdapter(adapter);
+                        adapter.setShows(showList);
+
                     } else {
                         Snackbar.make(rootView, R.string.string_some_thing_wrong, Snackbar.LENGTH_LONG).show();
                     }

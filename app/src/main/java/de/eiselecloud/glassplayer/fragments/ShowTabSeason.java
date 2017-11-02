@@ -3,7 +3,9 @@ package de.eiselecloud.glassplayer.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,26 +23,39 @@ import de.eiselecloud.glassplayer.models.Episode;
 
 public class ShowTabSeason extends Fragment {
 
-    View rootView;
-    RecyclerView recyclerView;
-    List<Episode> episodes;
-    EpisodeListAdapter adapter;
+    private View rootView;
+    private RecyclerView recyclerView;
+    public EpisodeListAdapter adapter;
+    public List<Episode> myEpisodes;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.show_tab_season, container, false);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.episodesRv);
-        adapter = new EpisodeListAdapter(getActivity(), episodes);
+        if (recyclerView == null){
+            Log.e("GLASS", "Episodes list == null");
+        }
+        adapter = new EpisodeListAdapter(getActivity());
         setupRecyclerView();
+        if(myEpisodes != null){
+            adapter.setEpisodes(myEpisodes);
+        }
+
         return rootView;
     }
 
     private void setupRecyclerView(){
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,false);
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
     }
 
     public void loadEpisodes(List<Episode> episodes){
-        this.episodes = episodes;
+        myEpisodes = episodes;
+        if(adapter!=null){
+            adapter.setEpisodes(myEpisodes);
+        }else {
+            Log.e("GLASS", "EpisodeListAdapter == null");
+        }
     }
 }

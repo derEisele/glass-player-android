@@ -34,7 +34,7 @@ public class Episode{
         return id;
     }
 
-    private void setId(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -42,7 +42,7 @@ public class Episode{
         return title;
     }
 
-    private void setTitle(String title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
@@ -50,7 +50,7 @@ public class Episode{
         return descr;
     }
 
-    private void setDescr(String descr) {
+    public void setDescr(String descr) {
         this.descr = descr;
     }
 
@@ -58,7 +58,7 @@ public class Episode{
         return season;
     }
 
-    private void setSeason(Integer season) {
+    public void setSeason(Integer season) {
         this.season = season;
     }
 
@@ -66,7 +66,7 @@ public class Episode{
         return episode;
     }
 
-    private void setEpisode(Integer episode) {
+    public void setEpisode(Integer episode) {
         this.episode = episode;
     }
 }

@@ -25,6 +25,7 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import de.eiselecloud.glassplayer.GlassService;
 import de.eiselecloud.glassplayer.R;
@@ -56,7 +57,7 @@ public class ShowActivity extends AppCompatActivity implements TabLayout.OnTabSe
         super.onCreate(savedInstanceState);
 
         Bundle b = getIntent().getExtras();
-        showID = -1;
+        showID = 1;
         if(b != null)
             showID = b.getInt("showID");
 
@@ -111,14 +112,21 @@ public class ShowActivity extends AppCompatActivity implements TabLayout.OnTabSe
                         toolbarLayout.setTitle(title);
                         setToolbarBackground(response.body().getPoster());
 
-                        ArrayList<Season> seasons = response.body().getSeasons();
+                        List<Season> seasons = response.body().getSeasons();
                         adapter.getOverview().setDescription(response.body().getDescr());
 
                         for (Season s: seasons) {
                             int seasonNumber = s.getSeason();
-                            ShowTabSeason tabSeason = new ShowTabSeason();
-                            adapter.addItem(tabSeason, "Season " + seasonNumber);
-                            tabSeason.loadEpisodes(s.getEpisodes());
+
+
+                            if (s.getEpisodes() == null) {
+                                Log.e("GLASS", "Episodes null!");
+                            }else {
+                                ShowTabSeason seasonTab = new ShowTabSeason();
+                                adapter.addItem(seasonTab, "Season " + seasonNumber);
+                                seasonTab.loadEpisodes(s.getEpisodes());
+
+                            }
                             adapter.notifyDataSetChanged();
                         }
                     } else {

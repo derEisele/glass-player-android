@@ -20,14 +20,19 @@ import de.eiselecloud.glassplayer.models.Show;
  */
 
 public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.MyViewHolder> {
-    private List<Show> shows;
+    private List<Show> shows = null;
     private Context mContext;
     private OnItemClickListener clickListener;
 
-    public  ShowListAdapter(Context context, List<Show> shows){
+    public  ShowListAdapter(Context context){
         this.mContext = context;
-        this.shows = shows;
     }
+
+    public void setShows(List<Show> shows){
+        this.shows = shows;
+        notifyDataSetChanged();
+    }
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
         TextView titleTxt, infoTxt;
@@ -77,8 +82,8 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.MyView
         holder.titleTxt.setText(shows.get(position).getTitle());
         holder.infoTxt.setText(infoStr);
 
-        if (shows.get(0).getPoster() != "") {
-            Picasso.with(mContext).load(shows.get(0).getPoster())
+        if (shows.get(position).getPoster() != "") {
+            Picasso.with(mContext).load(shows.get(position).getPoster())
                     .placeholder(R.mipmap.ic_launcher)
                     .error(R.mipmap.ic_launcher)
                     .into(holder.posterImg);
@@ -87,7 +92,11 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.MyView
 
     @Override
     public int getItemCount(){
-        return shows.size();
+        if (shows != null) {
+            return shows.size();
+        } else {
+          return 0; //Avoid crash when data is not loaded
+        }
     }
 
     @Override

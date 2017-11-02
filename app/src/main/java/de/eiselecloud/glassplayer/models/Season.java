@@ -4,21 +4,15 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by alexander on 30.10.17.
  */
 
 public class Season{
-    private ArrayList<Episode> episodes = new ArrayList<>();
 
-    public ArrayList<Episode> getEpisodes(){
-        return episodes;
-    }
-
-    public void setEpisodes(ArrayList<Episode> episodes) {
-        this.episodes = episodes;
-    }
+    private List<Episode> episodes = new ArrayList<>();
 
     @SerializedName("season")
     @Expose
@@ -28,7 +22,15 @@ public class Season{
         return season;
     }
 
-    private void setSeason(Integer season) {
+    public void setSeason(Integer season) {
         this.season = season;
+    }
+
+    public List<Episode> getEpisodes(){
+        return episodes;
+    }
+
+    public void setEpisodes(List<Episode> episodes) {
+        this.episodes = episodes;
     }
 }

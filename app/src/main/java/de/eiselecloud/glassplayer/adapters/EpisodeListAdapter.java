@@ -2,6 +2,7 @@ package de.eiselecloud.glassplayer.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +22,8 @@ public class EpisodeListAdapter extends RecyclerView.Adapter<EpisodeListAdapter.
     private Context mContext;
     private OnItemClickListener clickListener;
 
-    public  EpisodeListAdapter(Context context, List<Episode> episodes){
+    public  EpisodeListAdapter(Context context){
         this.mContext = context;
-        this.episodes = episodes;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
@@ -61,6 +61,12 @@ public class EpisodeListAdapter extends RecyclerView.Adapter<EpisodeListAdapter.
         this.clickListener = clickListener;
     }
 
+    public void setEpisodes(List<Episode> episodes){
+        Log.i("GLASS", "Set episodes");
+        this.episodes = episodes;
+        notifyDataSetChanged();
+    }
+
     public Episode getEpisodeByPosition(int position){
         return episodes.get(position);
     }
@@ -75,7 +81,11 @@ public class EpisodeListAdapter extends RecyclerView.Adapter<EpisodeListAdapter.
 
     @Override
     public int getItemCount(){
-        return episodes.size();
+        if (episodes != null){
+            return episodes.size();
+        } else {
+            return 0;
+        }
     }
 
     @Override

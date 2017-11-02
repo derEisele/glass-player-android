@@ -1,6 +1,7 @@
 package de.eiselecloud.glassplayer.models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by alexander on 30.10.17.
@@ -8,13 +9,13 @@ import java.util.ArrayList;
 
 public class ShowDetailed extends Show{
 
-    private ArrayList<Season> seasons = new ArrayList<>();
+    private List<Season> seasons = new ArrayList<>();
 
-    public ArrayList<Season> getSeasons(){
+    public List<Season> getSeasons(){
         return seasons;
     }
 
-    public void setSeasons(ArrayList<Season> seasons) {
+    public void setSeasons(List<Season> seasons) {
         this.seasons = seasons;
     }
 
