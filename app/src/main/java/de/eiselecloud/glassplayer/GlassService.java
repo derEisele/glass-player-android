@@ -1,5 +1,6 @@
 package de.eiselecloud.glassplayer;
 
+import de.eiselecloud.glassplayer.models.EpisodeDetailed;
 import de.eiselecloud.glassplayer.models.ShowDetailed;
 import de.eiselecloud.glassplayer.models.ShowList;
 import retrofit2.Call;
@@ -19,5 +20,5 @@ public interface GlassService {
     Call<ShowDetailed> getShow(@Path("id") int show_id);
 
     @GET("episodes/{id}")
-    Call<Episode> getEpisode(@Path("id") int episode_id);
+    Call<EpisodeDetailed> getEpisode(@Path("id") int episode_id);
 }
