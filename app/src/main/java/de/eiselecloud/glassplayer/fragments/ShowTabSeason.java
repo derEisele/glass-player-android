@@ -1,5 +1,6 @@
 package de.eiselecloud.glassplayer.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.widget.ListView;
 
 import java.util.List;
 
+import de.eiselecloud.glassplayer.EpisodePlayActivity;
 import de.eiselecloud.glassplayer.R;
 import de.eiselecloud.glassplayer.adapters.EpisodeListAdapter;
 import de.eiselecloud.glassplayer.models.Episode;
@@ -21,7 +23,7 @@ import de.eiselecloud.glassplayer.models.Episode;
  * Created by alexander on 28.10.17.
  */
 
-public class ShowTabSeason extends Fragment {
+public class ShowTabSeason extends Fragment implements EpisodeListAdapter.OnItemClickListener{
 
     private View rootView;
     private RecyclerView recyclerView;
@@ -46,8 +48,10 @@ public class ShowTabSeason extends Fragment {
 
     private void setupRecyclerView(){
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,false);
+        adapter.setClickListener(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+
     }
 
     public void loadEpisodes(List<Episode> episodes){
@@ -57,5 +61,17 @@ public class ShowTabSeason extends Fragment {
         }else {
             Log.e("GLASS", "EpisodeListAdapter == null");
         }
+    }
+
+    @Override
+    public void onClick(View view, int position) {
+        Intent intent = new Intent(getActivity(), EpisodePlayActivity.class);
+        intent.putExtra("episodeID", adapter.getEpisodeByPosition(position).getId());
+        startActivity(intent);
+    }
+
+    @Override
+    public void onLongClick(View view, int position) {
+
     }
 }

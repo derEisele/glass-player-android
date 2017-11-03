@@ -19,4 +19,6 @@
     <string name="getting_shows_msg">Loading show list from server.</string>
     <string name="serverUrl">Server URL</string>
     <string name="save">Save</string>
+    <string name="getting_episode_info_title">Loading episode.</string>
+    <string name="getting_episode_info_msg">Loading episode infos.</string>
 </resources>
