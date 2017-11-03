@@ -78,9 +78,6 @@ public class ShowListActivity extends AppCompatActivity implements ShowListAdapt
 
     @Override
     public void onClick(View view, int position) {
-        String title = adapter.getShowByPosition(position).getTitle();
-        Toast.makeText(this, title + " selected!", Toast.LENGTH_LONG).show();
-
         Bundle bundle = new Bundle();
         bundle.putInt("showID", adapter.getShowByPosition(position).getId());
         Intent intent = new Intent(this, ShowActivity.class);

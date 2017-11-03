@@ -184,13 +184,13 @@ public class ShowActivity extends AppCompatActivity implements TabLayout.OnTabSe
             if (vibrantSwatch != null){
                 mySwatch = vibrantSwatch;
             } else {
-                Snackbar.make(parentView, "Use dominant swatch", Snackbar.LENGTH_LONG).show();
+                Log.i("GLASS", "Use dominant swatch");
                 mySwatch = Palette.from(bitmap).generate().getDominantSwatch();
             }
 
 
             if (mySwatch == null) {
-                Snackbar.make(parentView, "Unable to create swatch", Snackbar.LENGTH_LONG).show();
+                Log.e("GLASS", "Unable to create swatch");
             }else{
 
                 getWindow().setStatusBarColor(mySwatch.getRgb());
