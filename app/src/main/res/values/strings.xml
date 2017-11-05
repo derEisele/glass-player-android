@@ -21,4 +21,6 @@
     <string name="save">Save</string>
     <string name="getting_episode_info_title">Loading episode.</string>
     <string name="getting_episode_info_msg">Loading episode infos.</string>
+    <string name="open_folder">Open folder</string>
+    <string name="base_folder">Base media folder</string>
 </resources>
