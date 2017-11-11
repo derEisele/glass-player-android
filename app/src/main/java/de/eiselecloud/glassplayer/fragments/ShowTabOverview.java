@@ -25,11 +25,18 @@ public class ShowTabOverview extends Fragment {
         rootview = inflater.inflate(R.layout.show_tab_overview, container, false);
         textViewDescr = (TextView) rootview.findViewById(R.id.show_description);
         textViewDescr.setText(descr);
+
+        setRetainInstance(true);
+
         return rootview;
     }
 
     public void setDescription(String description){
         descr = description;
-        textViewDescr.setText(descr);
+        if (textViewDescr != null) {
+            textViewDescr.setText(descr);
+        }else {
+            Log.e("GLASS", "Textview Descr is null");
+        }
     }
 }

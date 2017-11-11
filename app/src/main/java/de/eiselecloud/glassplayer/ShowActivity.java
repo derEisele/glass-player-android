@@ -84,6 +84,10 @@ public class ShowActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         setSupportActionBar(toolbar);
         loadInfo();
+
+        if (savedInstanceState != null){
+            viewPager.setCurrentItem(savedInstanceState.getInt("tabPos"));
+        }
     }
 
 
@@ -171,6 +175,12 @@ public class ShowActivity extends AppCompatActivity implements TabLayout.OnTabSe
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("tabPos", viewPager.getCurrentItem());
     }
 
     Target target = new Target() {

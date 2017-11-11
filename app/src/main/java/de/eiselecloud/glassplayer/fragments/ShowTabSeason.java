@@ -43,6 +43,7 @@ public class ShowTabSeason extends Fragment implements EpisodeListAdapter.OnItem
         if(myEpisodes != null){
             adapter.setEpisodes(myEpisodes);
         }
+        setRetainInstance(true);
 
         return rootView;
     }
